@@ -22,7 +22,7 @@ function App() {
   }
 
   async function getData(searchText) {
-    const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/users?name_like=${searchText}`;
+    const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/users?name_like=${searchText}`;
     const response = await fetch(url);
     if (response.ok) {
       const json = await response.json();

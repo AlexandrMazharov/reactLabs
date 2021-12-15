@@ -6,7 +6,7 @@ export default function Albums(props) {
   const userId = useParams().userId;
   const navigate = useNavigate();
 
-  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/albums?userId=${userId}`;
+  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/albums?userId=${userId}`;
   async function getAlbomsByUserId() {
     const response = await fetch(url);
     const result = await response.json(response);

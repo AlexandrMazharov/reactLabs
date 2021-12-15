@@ -4,7 +4,7 @@ import "../Global.css";
 export default function Albums(props) {
   const [photos, setPhotos] = useState([]);
   const albomId = useParams.albumId;
-  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/photo?albomId=${albomId}`;
+  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/photo?albomId=${albomId}`;
 
   async function getAlbomsByUserId() {
     const response = await fetch(url);

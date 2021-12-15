@@ -4,7 +4,7 @@ export default function Information(props) {
   const [info, setInfo] = useState({});
   const userId = useParams().userId;
 
-  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/users?id=${userId}`;
+  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/users?id=${userId}`;
   async function getInfoByid() {
     const response = await fetch(url).then((response) =>
       response.json(response)

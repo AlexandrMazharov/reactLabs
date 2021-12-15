@@ -6,7 +6,7 @@ export default function TodoList(props) {
   const [todoList, setTodoList] = useState([]);
   const userId = useParams().userId;
 
-  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/todo?userId=${userId}`;
+  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/todo?userId=${userId}`;
   async function getTodoByUserId() {
     const response = await fetch(url);
     const res = await response.json(response);

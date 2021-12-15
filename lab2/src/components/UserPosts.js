@@ -6,7 +6,7 @@ export default function UserPosts(props) {
   const [posts, setPosts] = useState([]);
   const userId = useParams().userId;
 
-  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/lab2/posts?userId=${userId}`;
+  const url = `https://my-json-server.typicode.com/AlexandrMazharov/reactLabs/posts?userId=${userId}`;
   async function getPostsByid() {
     const response = await fetch(url);
     const res = await response.json(response);
