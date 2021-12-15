@@ -1,0 +1,232 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Vasa",
+      "username": "String",
+      "email": "Vasa@mail.ru",
+      "address": {
+        "street": "Lenina",
+        "suite": "5",
+        "city": "Samara",
+        "zipcode": "443060",
+        "geo": {
+          "lat": "String",
+          "lng": "String"
+        }
+      },
+      "phone": "String",
+      "website": "String",
+      "company": {
+        "name": "String",
+        "catchPhrase": "String",
+        "bs": " "
+      }
+    },
+    {
+      "id": 2,
+      "name": "Kolay",
+      "username": "String",
+      "email": "kolya@mail.ru",
+      "address": {
+        "street": "String",
+        "suite": "String",
+        "city": "String",
+        "zipcode": "String",
+        "geo": {
+          "lat": "String",
+          "lng": "String"
+        }
+      },
+      "phone": "String",
+      "website": "String",
+      "company": {
+        "name": "String",
+        "catchPhrase": "String",
+        "bs": " "
+      }
+    },
+    {
+      "id": 3,
+      "name": "Alena",
+      "username": "String",
+      "email": "alena@mail.ru",
+      "address": {
+        "street": "String",
+        "suite": "String",
+        "city": "String",
+        "zipcode": "String",
+        "geo": {
+          "lat": "String",
+          "lng": "String"
+        }
+      },
+      "phone": "String",
+      "website": "String",
+      "company": {
+        "name": "String",
+        "catchPhrase": "String",
+        "bs": " "
+      }
+    },
+    {
+      "id": 5,
+      "name": "Ira",
+      "username": "String",
+      "email": "ira@mail.ru",
+      "address": {
+        "street": "String",
+        "suite": "String",
+        "city": "String",
+        "zipcode": "String",
+        "geo": {
+          "lat": "String",
+          "lng": "String"
+        }
+      },
+      "phone": "String",
+      "website": "String",
+      "company": {
+        "name": "String",
+        "catchPhrase": "String",
+        "bs": " "
+      }
+    }
+  ],
+  "todo": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "Todo1",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "Todo2",
+      "completed": true
+    },
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "todo3",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "todo4",
+      "completed": true
+    }
+  ],
+  "albums": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "Albom 1"
+    },
+    {
+      "userId": 2,
+      "id": 3,
+      "title": "Albom 1"
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "title": "Albom 5"
+    },
+    {
+      "userId": 2,
+      "id": 4,
+      "title": "Albom 8"
+    }
+  ],
+  "photo": [
+    {
+      "albumId": 1,
+      "id": 1,
+      "title": "title1",
+      "url": "https://raw.githubusercontent.com/AlexandrMazharov/ForMisha/master/images/1.jpg",
+      "thumbnailUrl": "String"
+    },
+    {
+      "albumId": 1,
+      "id": 2,
+      "title": "title1",
+      "url": "https://raw.githubusercontent.com/AlexandrMazharov/ForMisha/master/images/2.jpg",
+      "thumbnailUrl": "String"
+    },
+    {
+      "albumId": 1,
+      "id": 3,
+      "title": "title1",
+      "url": "https://raw.githubusercontent.com/AlexandrMazharov/ForMisha/master/images/3.jpg",
+      "thumbnailUrl": "String"
+    },
+    {
+      "albumId": 1,
+      "id": 4,
+      "title": "title1",
+      "url": "https://raw.githubusercontent.com/AlexandrMazharov/ForMisha/master/images/4.jpg",
+      "thumbnailUrl": "String"
+    }
+  ],
+  "posts": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "Пост про котят",
+      "body": "Текст поста про котят. Все любят котят, да",
+      "comments": [
+        {
+          "postId": 1,
+          "id": 1,
+          "name": "Alena",
+          "email": "Alena@email.ru",
+          "body": "Не люблю собак"
+        }
+      ]
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "Еще пост про котят",
+      "body": "Вася не сильно креативный. Это еще пост про котят.",
+      "comments": [
+        {
+          "postId": 2,
+          "id": 2,
+          "name": "Катя",
+          "email": "ek@email.ru",
+          "body": "А я люблю собак"
+        },
+        {
+          "postId": 2,
+          "id": 3,
+          "name": "Паша",
+          "email": "pasha@email.ru",
+          "body": "Я вообще крыс люблю"
+        },
+        {
+          "postId": 2,
+          "id": 4,
+          "name": "Иван",
+          "email": "ivan@email.ru",
+          "body": "Дураки вы"
+        }
+      ]
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "title": "Про собаку",
+      "body": "Вася думал, что собак тоже любят все"
+    },
+    {
+      "userId": 1,
+      "id": 4,
+      "title": "Другой пост про собаку",
+      "body": "Этот пост написала Васина собака, поэтому он с ошибкой"
+    }
+  ]
+}

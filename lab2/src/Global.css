@@ -1,0 +1,54 @@
+.app {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: #8a8686;
+    display: flex;
+    min-height: 100vh;
+}
+.app__menu {
+    padding: 12px;
+}
+.app__main {
+}
+
+.completed {
+    text-decoration: line-through !important;
+}
+
+.galary {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+}
+.galary__photo {
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+}
+.search {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.search__input {
+    height: 40px;
+}
+.search__btn {
+    margin: 6px;
+}
+.posts {
+}
+.posts__post {
+    cursor: pointer;
+}
+.posts__post:hover {
+    transform: scale(1.01);
+}
+
+.comment__name {
+    font-weight: bold;
+}
+.comment__email {
+}
+.comment__body {
+}
