@@ -1,4 +1,5 @@
 import "./Global.css";
+import getBestStep from "./II";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -50,146 +51,22 @@ function App() {
   }
 
   function userStep(i, j) {
-    // if (!userFigure && !pcFigure) return;
+    if (!userFigure && !pcFigure) return;
     updateField(i, j, userFigure);
     if (isGameEnd()) return;
     stepPC();
   }
 
   function stepPC() {
-    // проверка главной диагонали
-    if (!field[0][0] && (field[1][1] === field[2][2]) === userFigure) {
-      updateField(0, 0, pcFigure);
-      return;
-    }
-    if (!field[1][1] && (field[0][0] === field[2][2]) === userFigure) {
-      updateField(1, 1, pcFigure);
-      return;
-    }
-    if (!field[2][2] && (field[1][1] === field[0][0]) === userFigure) {
-      updateField(2, 2, pcFigure);
-      return;
-    }
-    // проверка вторичной диагонали
-    if (!field[0][2] && (field[1][1] === field[2][2]) === userFigure) {
-      updateField(0, 2, pcFigure);
-      return;
-    }
-    if (!field[1][1] && (field[0][2] === field[2][0]) === userFigure) {
-      updateField(1, 1, pcFigure);
-      return;
-    }
-    if (!field[2][0] && (field[1][1] === field[0][2]) === userFigure) {
-      updateField(2, 0, pcFigure);
-      return;
-    }
-
-    // проверка первой строки
-    if (!field[0][0] && (field[0][1] === field[0][2]) === userFigure) {
-      updateField(0, 0, pcFigure);
-      return;
-    }
-    if (!field[0][1] && (field[0][0] === field[0][2]) === userFigure) {
-      updateField(0, 1, pcFigure);
-      return;
-    }
-    if (!field[0][2] && (field[0][0] === field[0][1]) === userFigure) {
-      updateField(0, 2, pcFigure);
-      return;
-    }
-    // проверка второй строки
-    if (!field[1][0] && (field[1][1] === field[1][2]) === userFigure) {
-      updateField(1, 0, pcFigure);
-      return;
-    }
-    if (!field[1][1] && (field[1][0] === field[1][2]) === userFigure) {
-      updateField(1, 1, pcFigure);
-      return;
-    }
-    if (!field[1][2] && (field[1][0] === field[1][1]) === userFigure) {
-      updateField(1, 2, pcFigure);
-      return;
-    }
-    // проверка третьей строки
-    if (!field[2][0] && (field[2][1] === field[2][2]) === userFigure) {
-      updateField(2, 0, pcFigure);
-      return;
-    }
-    if (!field[2][1] && (field[2][0] === field[2][2]) === userFigure) {
-      updateField(2, 1, pcFigure);
-      return;
-    }
-    if (!field[2][2] && (field[2][0] === field[2][1]) === userFigure) {
-      updateField(2, 2, pcFigure);
-      return;
-    }
-    // проверка первого столбца
-    if (!field[0][0] && (field[1][0] === field[2][0]) === userFigure) {
-      updateField(0, 0, pcFigure);
-      return;
-    }
-    if (!field[1][0] && (field[0][0] === field[2][0]) === userFigure) {
-      updateField(1, 0, pcFigure);
-      return;
-    }
-    // проверка третьего столбца
-    if (!field[0][2] && (field[1][2] === field[2][2]) === userFigure) {
-      updateField(0, 2, pcFigure);
-      return;
-    }
-    if (!field[1][2] && (field[0][2] === field[2][2]) === userFigure) {
-      updateField(1, 2, pcFigure);
-      return;
-    }
-    if (!field[2][2] && (field[0][2] === field[1][2]) === userFigure) {
-      updateField(2, 2, pcFigure);
-      return;
-    }
-    // if (findCrossing()) {
-    //   const ij = findCrossing();
-    //   updateField(ij.i, ij.j, pcFigure);
-    //   return;
-    // }
-    // ищем потенциальные пересечения
-
-    randomStep();
-    return;
+    if (!userFigure && !pcFigure) return;
+    const bestStep = getBestStep(userFigure, pcFigure, field);
+    updateField(bestStep.i, bestStep.j, pcFigure);
   }
-  function findCrossing() {
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        // i=0;j=0
-        if (
-          (field[i][0] === userFigure ||
-            field[i][1] === userFigure ||
-            field[i][2] === userFigure) &&
-          (field[0][j] === userFigure ||
-            field[1][j] === userFigure ||
-            field[2][j] === userFigure)
-        ) {
-          console.log(i, j);
-          return { i, j };
-        }
-      }
-    }
-    return false;
-  }
-  function randomStep() {
-    let i, j;
-    do {
-      i = getRandomInt();
-      j = getRandomInt();
-    } while (field[i][j]);
-    console.log("randomStep", i, j);
-    updateField(i, j, pcFigure);
-  }
-
-  const getRandomInt = () => Math.floor(Math.random() * field[0].length);
 
   function isGameEnd() {
     const countEptyCell = field.flat().filter((cell) => !cell).length;
     if (countEptyCell === 0) {
-      alert.log("Конец игры");
+      alert("Конец игры");
       return true;
     }
   }
