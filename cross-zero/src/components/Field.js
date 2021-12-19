@@ -1,13 +1,9 @@
 import "../Global.css";
 import Cell from "./Cell";
-import React, { useState } from "react";
+import React from "react";
 
 export default function Field(props) {
-  
-  function clickOnCell(i, j) {
-    console.log(props.field);
-    props.userStep(i, j);
-  }
+  const clickOnCell = (i, j) => props.userStep(i, j);
 
   return (
     <div className="field">

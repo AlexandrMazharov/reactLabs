@@ -1,3 +1,28 @@
+body {
+  background: #fafafa;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app {
+  padding: 16px;
+  border-radius: 8px;
+  width: 500px;
+  height: 320px;
+  background: white;
+  display: flex;
+}
+.app__config {
+  margin-right: 16px;
+  width: 180px;
+}
+.app__field {
+}
+.form-control-group {
+  margin: 8px 0 !important;
+}
 .field {
   margin: 0 auto;
   width: 320px;
@@ -11,4 +36,7 @@
   width: 100px;
   height: 100px;
   background: chartreuse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

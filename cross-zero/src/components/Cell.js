@@ -1,6 +1,5 @@
 import "../Global.css";
-import React, { useState } from "react";
-import FIGURES from "../App";
+import React from "react";
 export default function Сell(props) {
   return (
     <div
