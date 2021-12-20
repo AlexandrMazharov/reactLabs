@@ -62,11 +62,30 @@ function App() {
     const bestStep = getBestStep(userFigure, pcFigure, field);
     updateField(bestStep.i, bestStep.j, pcFigure);
   }
-
+  function isFigureWin(figure) {
+    if (
+      // проверка строк
+      (field[0][0] === field[0][1]) === (field[0][2] === figure) ||
+      (field[1][0] === field[1][1]) === (field[1][2] === figure) ||
+      (field[2][0] === field[2][1]) === (field[2][2] === figure) ||
+      // проверка столбов
+      (field[0][0] === field[1][0]) === (field[2][0] === figure) ||
+      (field[0][1] === field[1][1]) === (field[2][1] === figure) ||
+      (field[0][2] === field[1][2]) === (field[2][2] === figure) ||
+      // проверка диагоналей
+      (field[0][0] === field[1][1]) === (field[2][2] === figure) ||
+      (field[0][2] === field[1][1]) === (field[2][0] === figure)
+    ) {
+      return true;
+    }
+  }
   function isGameEnd() {
     const countEptyCell = field.flat().filter((cell) => !cell).length;
     if (countEptyCell === 0) {
-      alert("Конец игры");
+      if (isFigureWin(FIGURES.CROSS)) alert("Победа за Крестиком");
+      else if (isFigureWin(FIGURES.ZERO)) alert("Победа за Ноликом");
+      else alert("Ничья");
+
       return true;
     }
   }

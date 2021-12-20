@@ -1,13 +1,13 @@
 export default function getBestStep(userFigure, pcFigure, field) {
-  if (!userFigure && !pcFigure)
-    if (
-      !field[0][0] &&
-      field[1][1] === field[2][2] &&
-      field[2][2] === userFigure
-    ) {
-      // проверка главной диагонали
-      return { i: 0, j: 0, value: pcFigure };
-    }
+  if (!userFigure && !pcFigure) return;
+  // проверка главной диагонали
+  if (
+    !field[0][0] &&
+    field[1][1] === field[2][2] &&
+    field[2][2] === userFigure
+  ) {
+    return { i: 0, j: 0, value: pcFigure };
+  }
   if (
     !field[1][1] &&
     field[0][0] === field[2][2] &&
@@ -22,7 +22,18 @@ export default function getBestStep(userFigure, pcFigure, field) {
   ) {
     return { i: 2, j: 2, value: pcFigure };
   }
+
+  if (
+    field[1][1] &&
+    field[0][0] === field[2][2] &&
+    field[0][0] === userFigure
+  ) {
+    if (!field[0][2]) return { i: 0, j: 2, value: pcFigure };
+    if (!field[2][0]) return { i: 2, j: 0, value: pcFigure };
+  }
+
   // проверка вторичной диагонали
+  // TODO: 02 пусто, 11,20 крестики, добавить проверку на
   if (
     !field[0][2] &&
     field[1][1] === field[2][2] &&
@@ -178,10 +189,13 @@ export default function getBestStep(userFigure, pcFigure, field) {
     return { i: 2, j: 2, value: pcFigure };
   }
   // ищем потенциальные вилки
-  const ij = findCrossing(field, userFigure);
-  if (ij) {
-    return { i: ij.i, j: ij.j, value: pcFigure };
-  }
+  // const ij = findCrossing(field, userFigure);
+  // if (ij) {
+  //   return { i: ij.i, j: ij.j, value: pcFigure };
+  // }
+  // если центр свободен, то занять центр
+  if(!field[1][1]) return { i: 1, j: 1, value: pcFigure }
+
   return randomStep(field, pcFigure);
 }
 function randomStep(field, pcFigure) {
