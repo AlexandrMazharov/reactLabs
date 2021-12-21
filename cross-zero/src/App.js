@@ -13,11 +13,13 @@ export const FIRST_STEP = { PEOPE: "P", PC: "PC" };
 
 function App() {
   const generateField = () =>
-    new Array(3).fill("").map((row) => new Array(3).fill(""));
+    new Array(3).fill("").map((r) => new Array(3).fill(""));
+
   const firstGameSettings = {
     firstFigure: FIGURES.CROSS,
     isUserFirst: true,
   };
+
   const [field, setField] = useState(generateField());
   const [userFigure, setUserFigure] = useState();
   const [pcFigure, setPcFigure] = useState();
@@ -37,8 +39,9 @@ function App() {
       setUserFigure(FIGURES.ZERO);
       setPcFigure(FIGURES.CROSS);
     }
-    if (!nextGameSettings.isUserFirst)
+    if (nextGameSettings.isUserFirst === false) {
       firstPcStep(nextGameSettings.firstFigure);
+    }
   }
 
   const firstPcStep = (pcFigure) => updateField(1, 1, pcFigure);
@@ -48,16 +51,17 @@ function App() {
     newField = Object.assign(newField, field);
     newField[i][j] = value;
     setField(newField);
+    if (isGameEnd()) return;
   }
 
   function userStep(i, j) {
     if (!userFigure && !pcFigure) return;
     updateField(i, j, userFigure);
-    if (isGameEnd()) return;
     stepPC();
   }
 
   function stepPC() {
+    if (getEmptyCellCount() === 0) return;
     if (!userFigure && !pcFigure) return;
     const bestStep = getBestStep(userFigure, pcFigure, field);
     updateField(bestStep.i, bestStep.j, pcFigure);
@@ -65,31 +69,57 @@ function App() {
   function isFigureWin(figure) {
     if (
       // проверка строк
-      (field[0][0] === field[0][1]) === (field[0][2] === figure) ||
-      (field[1][0] === field[1][1]) === (field[1][2] === figure) ||
-      (field[2][0] === field[2][1]) === (field[2][2] === figure) ||
+      (field[0][0] === figure &&
+        field[0][1] === figure &&
+        field[0][2] === figure) ||
+      (field[1][0] === figure &&
+        field[1][1] === figure &&
+        field[1][2] === figure) ||
+      (field[2][0] === figure &&
+        field[2][1] === figure &&
+        field[2][2] === figure) ||
       // проверка столбов
-      (field[0][0] === field[1][0]) === (field[2][0] === figure) ||
-      (field[0][1] === field[1][1]) === (field[2][1] === figure) ||
-      (field[0][2] === field[1][2]) === (field[2][2] === figure) ||
+      (field[0][0] === figure &&
+        field[1][0] === figure &&
+        field[2][0] === figure) ||
+      (field[0][1] === figure &&
+        field[1][1] === figure &&
+        field[2][1] === figure) ||
+      (field[0][2] === figure &&
+        field[1][2] === figure &&
+        field[2][2] === figure) ||
       // проверка диагоналей
-      (field[0][0] === field[1][1]) === (field[2][2] === figure) ||
-      (field[0][2] === field[1][1]) === (field[2][0] === figure)
+      (field[0][0] === figure &&
+        field[1][1] === figure &&
+        field[2][2] === figure) ||
+      (field[0][2] === figure &&
+        field[1][1] === figure &&
+        field[2][0] === figure)
     ) {
       return true;
     }
   }
   function isGameEnd() {
-    const countEptyCell = field.flat().filter((cell) => !cell).length;
-    if (countEptyCell === 0) {
-      if (isFigureWin(FIGURES.CROSS)) alert("Победа за Крестиком");
-      else if (isFigureWin(FIGURES.ZERO)) alert("Победа за Ноликом");
-      else alert("Ничья");
-
+    const crossWin = isFigureWin(FIGURES.CROSS);
+    const zerroWin = isFigureWin(FIGURES.ZERO);
+    if (crossWin && zerroWin) {
+      alert("Ничья! ");
+      return true;
+    } else if (crossWin) {
+      alert("Победа за Крестиком");
+      return true;
+    } else if (zerroWin) {
+      alert("Победа за Ноликом");
       return true;
     }
-  }
 
+    if (getEmptyCellCount() === 0) {
+      alert("Ничья! Кончились ходы");
+      return true;
+    }
+    return false;
+  }
+  const getEmptyCellCount = () => field.flat().filter((cell) => !cell).length;
   const handleChangeFigure = (event) => {
     nextGameSettings.firstFigure = event.target.value;
     setNextGameSettings(Object.assign({}, nextGameSettings));
